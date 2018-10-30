@@ -1,0 +1,112 @@
+body {
+	min-width: 450px;
+	background-color: #7FDBFF; /*aqua*/
+}
+
+div.people-panel {
+	padding: 5px;
+	max-width: 468px;
+	max-height: 300px;
+	overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  background-color: white;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+
+}
+
+h1.title {
+	color: red;
+	font-size: 40px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+
+}
+
+/* User */
+img {
+	max-width: 75px;
+	max-height: 75px;
+}
+div.feed {
+	background-color: white;
+	max-height: 300px;
+	max-width:  480px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border-radius: 5px;
+	border-style: solid;
+  border-color: black;
+  border-width: 1px;
+
+}
+blockquote.people {
+	color: red;
+	display:inline-block;
+	border-radius: .5px;
+	border-width: 1px;
+	font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 16px;
+	border-color: #7FDBFF; /*aqua*/
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+	margin: 5px 5px;
+	padding: 10px 10px 10px 10px;
+	min-width: 150px;
+	min-height: 160px;
+}
+p.user_name {
+	font-size: 15px;
+	color: black;
+}
+a.twitter-follow-button {
+	margin-top: 5px;
+	display: block; 
+}
+
+/* Tweet */
+div.thoughts {
+	
+}
+
+blockquote.twitter-tweet {
+  background-color: white;
+  font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 16px;
+  border-color: #eee #ddd #bbb;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  margin: 10px 5px;
+  padding: 0px 16px 16px 16px;
+  max-width: 468px;
+  border-color: #7FDBFF; /*aqua*/
+}
+
+blockquote.twitter-tweet p {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 20px;
+}
+
+blockquote.twitter-tweet a {
+  color: inherit;
+  font-weight: normal;
+  text-decoration: none;
+  outline: 0 none;
+}
+
+blockquote.twitter-tweet a:hover,
+blockquote.twitter-tweet a:focus {
+  text-decoration: underline;
+}

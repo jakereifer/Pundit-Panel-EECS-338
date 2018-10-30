@@ -4,7 +4,7 @@
   "name": "Pundit Panel Plugin",
   "description": "This extension will show tweets from pundits in the area of expertise of news articles",
   "version": "1.0",
-
+  "content_security_policy": "script-src 'self' https://platform.twitter.com; object-src 'self'",
   "browser_action": {
    "default_icon": "icon.png",
    "default_popup": "popup.html"
