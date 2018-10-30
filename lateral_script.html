@@ -1,0 +1,45 @@
+<html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<body>
+
+<div class="row" ng-app="myApp" ng-controller="myCtrl">
+
+<div class="button"><button ng-click="onClick()" class="btn btn-default" style="width: 50%">Submit</button></div>
+
+</div>
+
+</body>
+
+</html>
+
+
+<script>
+
+var app = angular.module('myApp', []);
+
+	app.controller('myCtrl', function($scope, $http) {
+
+		$scope.profile = [];
+
+		$scope.onClick = function(){
+			var tokens = {
+				"subscription-key": "1b209a02877b88d918e8ad3522b9f0aa"
+			}
+			var string = "https://document-parser-api.lateral.io/?url=https://bleacherreport.com/articles/2790143-hue-jackson-reportedly-fired-by-browns-after-2-plus-seasons?utm_source=cnn.com&utm_medium=referral&utm_campaign=editorial";
+			$http.get(string, {headers: tokens})
+				.then(function(response){
+					console.log(response.data.title);
+			});
+		}
+
+
+
+	});
+
+
+</script>
