@@ -51,22 +51,22 @@ class Profile extends React.Component {
   }
   ];
 
-  var options = {
-    method: 'get',
-    headers: {
+  var header = {
         "Access-Control-Request-Headers": "*",
         "Access-Control-Request-Method": "*",
-        tokens: {"subscription-key": "1b209a02877b88d918e8ad3522b9f0aa"}
-    },
-    mode: 'no-cors'
-  }
+        "subscription-key": "02902c337eb01f2989400077cd196e37",
+        "mode": 'no-cors'
+}
+
+/*
 async function test() {
-await fetch("https://document-parser-api.lateral.io/?url=https://bleacherreport.com/articles/2790143-hue-jackson-reportedly-fired-by-browns-after-2-plus-seasons?utm_source=cnn.com&utm_medium=referral&utm_campaign=editorial", options)
+await fetch(url, header)
   .then(function(response) {
-      console.log(response.json());
-  }).catch((e)=> console.log(e));
+      console.log(response);
+  })
 }
 test();
+*/
 
 function getMax(classify) {
   var max=0;
@@ -79,7 +79,21 @@ function getMax(classify) {
   }
   }
   return maxgroup;
-  }
+}
+
+
+var xhr = new XMLHttpRequest();
+
+xhr.open("GET", "https://document-parser-api.lateral.io/?url=https://bleacherreport.com/articles/2790143-hue-jackson-reportedly-fired-by-browns-after-2-plus-seasons?utm_source=cnn.com&utm_medium=referral&utm_campaign=editorial", false);
+xhr.setRequestHeader("Access-Control-Request-Headers", "*");
+xhr.setRequestHeader("subscription-key", "02902c337eb01f2989400077cd196e37");
+xhr.send();
+var body = JSON.parse(xhr.responseText).body;
+xhr.open("GET", "https://api.uclassify.com/v1/uClassify/IAB Taxonomy/classify/?readKey=WdFduIw0qrTL&text=" + body, false);
+xhr.setRequestHeader("Access-Control-Request-Headers", "*");
+xhr.send();
+var classification = JSON.parse(xhr.responseText).body;
+
 
 
 ReactDOM.render(<ProfileList people={info} /> , document.getElementById('people-panel'));

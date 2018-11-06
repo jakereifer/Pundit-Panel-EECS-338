@@ -17,6 +17,8 @@
    "default_popup": "popup.html"
   },
   "permissions": [
-   "activeTab"
+   "activeTab",
+   "https://document-parser-api.lateral.io/*",
+   "https://api.uclassify.com/*"
    ]
 }
