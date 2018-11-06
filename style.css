@@ -1,6 +1,7 @@
 body {
 	min-width: 450px;
 	background-color: #7FDBFF; /*aqua*/
+	padding-left: 10px;
 }
 
 div.people-panel {
@@ -8,14 +9,13 @@ div.people-panel {
 	max-width: 468px;
 	max-height: 300px;
 	overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  background-color: white;
-  border-radius: 5px;
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
-
+	overflow-y: hidden;
+	white-space: nowrap;
+	background-color: white;
+	border-radius: 5px;
+	border-style: solid;
+	border-color: black;
+	border-width: 1px;
 }
 
 h1.title {
@@ -30,6 +30,8 @@ h1.title {
 img {
 	max-width: 75px;
 	max-height: 75px;
+	border-radius: 50px;
+
 }
 div.feed {
 	background-color: white;
@@ -39,8 +41,8 @@ div.feed {
 	overflow-x: hidden;
 	border-radius: 5px;
 	border-style: solid;
-  border-color: black;
-  border-width: 1px;
+	border-color: black;
+	border-width: 1px;
 
 }
 blockquote.people {
@@ -52,7 +54,7 @@ blockquote.people {
 	font-size: 12px;
 	font-weight: bold;
 	line-height: 16px;
-	border-color: #7FDBFF; /*aqua*/
+	border-color: #7FDBFF; 
 	border-radius: 5px;
 	border-style: solid;
 	border-width: 1px;
@@ -72,41 +74,42 @@ a.twitter-follow-button {
 }
 
 /* Tweet */
-div.thoughts {
+/*div.thoughts {
 	
 }
 
 blockquote.twitter-tweet {
-  background-color: white;
-  font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 16px;
-  border-color: #eee #ddd #bbb;
-  border-radius: 5px;
-  border-style: solid;
-  border-width: 1px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-  margin: 10px 5px;
-  padding: 0px 16px 16px 16px;
-  max-width: 468px;
-  border-color: #7FDBFF; /*aqua*/
+	background-color: white;
+	font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 16px;
+	border-color: #eee #ddd #bbb;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+	margin: 10px 10px;
+	padding: 0px 16px 16px 16px;
+	max-width: 468px;
+	border-color: #7FDBFF; 
 }
 
 blockquote.twitter-tweet p {
-  font-size: 16px;
-  font-weight: normal;
-  line-height: 20px;
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 20px;
 }
 
 blockquote.twitter-tweet a {
-  color: inherit;
-  font-weight: normal;
-  text-decoration: none;
-  outline: 0 none;
+	color: inherit;
+	font-weight: normal;
+	text-decoration: none;
+	outline: 0 none;
 }
 
 blockquote.twitter-tweet a:hover,
 blockquote.twitter-tweet a:focus {
-  text-decoration: underline;
+	text-decoration: underline;
 }
+*/

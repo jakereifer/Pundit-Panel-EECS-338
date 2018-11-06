@@ -1,20 +1,31 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var checkPageButton = document.getElementById('checkPage');
-  checkPageButton.addEventListener('click', function() {
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-    chrome.tabs.getSelected(null, function(tab) {
-      d = document;
+React.render(<h1>TEST!</h1>, document.getElementById('test'))
 
-      var f = d.createElement('form');
-      f.action = 'http://gtmetrix.com/analyze.html?bm';
-      f.method = 'post';
-      var i = d.createElement('input');
-      i.type = 'hidden';
-      i.name = 'url';
-      i.value = tab.url;
-      f.appendChild(i);
-      d.body.appendChild(f);
-      f.submit();
-    });
-  }, false);
-}, false);
+class Profile extends React.Component {
+  render() { return (
+    <blockquote class="people"> 
+        <img src={this.props.imgSource} /> 
+        <p className="user_name">{this.props.friendlyName}</p>
+        <a href={"https://twitter.com/" + this.props.handle + "?ref_src=twsrc%5Etfw"} className="twitter-follow-button" data-show-count="false">Follow @{this.props.handle}</a>
+    </blockquote>)
+  }
+}
+/*
+  first get info in array and pass to profile list which renders each profile
+*/
+
+class ProfileList extends React.Component {
+  render() { 
+    return (
+    <div class="people">
+   		<h2>Our Pundits:</h2> 
+   		<div class="people-panel">
+          { this.props.people.map(p => 
+            <Profile imgSource={p.imgSource} friendlyName={p.friendlyName} handle={p.handle} /> )
+          }
+  		</div>
+ 	</div>)
+  }
+}
