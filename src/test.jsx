@@ -68,4 +68,18 @@ await fetch("https://document-parser-api.lateral.io/?url=https://bleacherreport.
 }
 test();
 
+function getMax(classify) {
+  var max=0;
+  var maxgroup;
+  var length=Object.keys(classify).length;
+  for (var a=0; a<length; a++) {
+  if (Object.values(classify)[a]>max) {
+  max=Object.values(classify)[a];
+  maxgroup=Object.keys(classify)[a];
+  }
+  }
+  return maxgroup;
+  }
+
+
 ReactDOM.render(<ProfileList people={info} /> , document.getElementById('people-panel'));
