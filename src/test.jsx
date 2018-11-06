@@ -2,6 +2,9 @@ var ReactDOM = require('react-dom');
 var React = require('react');
 const {getUrl} = require('../url.js');
 const {promisify} = require("es6-promisify");
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
+
 /*
  * A simple React component
 */
@@ -26,8 +29,8 @@ class Profile extends React.Component {
       <div className="people">
              <h2>Our Pundits:</h2> 
              <div className="people-panel">
-            { this.props.people.map(p => 
-              <Profile imgSource={p.imgSource} friendlyName={p.friendlyName} handle={p.handle} /> )
+            { this.props.people.map((p,i) => 
+              <Profile key={i} imgSource={p.imgSource} friendlyName={p.friendlyName} handle={p.handle} /> )
             }
             </div>
        </div>)
@@ -48,5 +51,21 @@ class Profile extends React.Component {
   }
   ];
 
+  var options = {
+    method: 'get',
+    headers: {
+        "Access-Control-Request-Headers": "*",
+        "Access-Control-Request-Method": "*",
+        tokens: {"subscription-key": "1b209a02877b88d918e8ad3522b9f0aa"}
+    },
+    mode: 'no-cors'
+  }
+async function test() {
+await fetch("https://document-parser-api.lateral.io/?url=https://bleacherreport.com/articles/2790143-hue-jackson-reportedly-fired-by-browns-after-2-plus-seasons?utm_source=cnn.com&utm_medium=referral&utm_campaign=editorial", options)
+  .then(function(response) {
+      console.log(response.json());
+  }).catch((e)=> console.log(e));
+}
+test();
 
 ReactDOM.render(<ProfileList people={info} /> , document.getElementById('people-panel'));
