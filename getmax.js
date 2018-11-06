@@ -11,5 +11,5 @@ function getMax(classify) {
 	}
 	return maxgroup;
 }
-var result=getMax(test);
-console.log(result);
+//var result=getMax(test);
+//console.log(result);
