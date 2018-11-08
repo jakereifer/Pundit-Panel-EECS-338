@@ -12,11 +12,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ReactDOM = require('react-dom');
 var React = require('react');
 
-var _require = require('../url.js'),
-    getUrl = _require.getUrl;
-
-var _require2 = require("es6-promisify"),
-    promisify = _require2.promisify;
+var _require = require("es6-promisify"),
+    promisify = _require.promisify;
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
@@ -74,22 +71,30 @@ var ProfileList = function (_React$Component2) {
   _createClass(ProfileList, [{
     key: 'render',
     value: function render() {
-      return React.createElement(
-        'div',
-        { className: 'people' },
-        React.createElement(
-          'h2',
-          null,
-          'Our Pundits:'
-        ),
-        React.createElement(
+      if (this.props.people.length > 0) {
+        return React.createElement(
           'div',
-          { className: 'people-panel' },
-          this.props.people.map(function (p, i) {
-            return React.createElement(Profile, { key: i, imgSource: p.imgSource, friendlyName: p.friendlyName, handle: p.handle });
-          })
-        )
-      );
+          { className: 'people' },
+          React.createElement(
+            'h2',
+            null,
+            'Our Pundits:'
+          ),
+          React.createElement(
+            'div',
+            { className: 'people-panel' },
+            this.props.people.map(function (p, i) {
+              return React.createElement(Profile, { key: i, imgSource: p.imgSource, friendlyName: p.friendlyName, handle: p.handle });
+            })
+          )
+        );
+      } else {
+        return React.createElement(
+          'h1',
+          null,
+          ' NO PUNDITS '
+        );
+      }
     }
   }]);
 
@@ -116,18 +121,9 @@ var header = {
   "Access-Control-Request-Method": "*",
   "subscription-key": "02902c337eb01f2989400077cd196e37",
   "mode": 'no-cors'
+};
 
-  /*
-  async function test() {
-  await fetch(url, header)
-    .then(function(response) {
-        console.log(response);
-    })
-  }
-  test();
-  */
-
-};function getMax(classify) {
+function getMax(classify) {
   var max = 0;
   var maxgroup;
   var length = Object.keys(classify).length;
@@ -139,19 +135,6 @@ var header = {
   }
   return maxgroup;
 }
-
-var xhr = new XMLHttpRequest();
-
-xhr.open("GET", "https://document-parser-api.lateral.io/?url=https://bleacherreport.com/articles/2790143-hue-jackson-reportedly-fired-by-browns-after-2-plus-seasons?utm_source=cnn.com&utm_medium=referral&utm_campaign=editorial", false);
-xhr.setRequestHeader("Access-Control-Request-Headers", "*");
-xhr.setRequestHeader("subscription-key", "02902c337eb01f2989400077cd196e37");
-xhr.send();
-var body = JSON.parse(xhr.responseText).body;
-xhr.open("GET", "https://api.uclassify.com/v1/uClassify/IAB Taxonomy/classify/?readKey=WdFduIw0qrTL&text=" + body, false);
-xhr.setRequestHeader("Access-Control-Request-Headers", "*");
-xhr.send();
-
-var classification = JSON.parse(xhr.responseText);
 
 var pundits = {
   "travel": [{
@@ -390,22 +373,45 @@ function getMax(classify) {
   return maxgroup;
 }
 
-var result = getMax(classification);
+var getUrl = function getUrl() {
+  return new Promise(function (resolve, reject) {
+    chrome.tabs.query({ 'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT }, function (tabs) {
+      var cururl = tabs[0].url;
+      resolve(cururl);
+    });
+  });
+};
 
 function getPundits(classification) {
   // classification == the output for getMax
 
   var base_topic = classification.split("_")[0];
-  console.log(JSON.stringify(pundits));
-  console.log(pundits["automotive"]);
+  //console.log(JSON.stringify(pundits));
+  //console.log(pundits["automotive"]);
   return pundits[base_topic];
 }
 
-var punditListTopic = getPundits(result);
-console.log(punditListTopic);
-
-ReactDOM.render(React.createElement(ProfileList, { people: punditListTopic }), document.getElementById('people-panel'));
-},{"../url.js":21,"es6-promise":2,"es6-promisify":3,"isomorphic-fetch":4,"react":13,"react-dom":10}],2:[function(require,module,exports){
+getUrl().then(function (x) {
+  console.log(x);
+  console.log("https://document-parser-api.lateral.io/?url=" + x);
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "https://document-parser-api.lateral.io/?url=" + x, false);
+  //xhr.setRequestHeader("Access-Control-Request-Headers", "*");
+  xhr.setRequestHeader("subscription-key", "02902c337eb01f2989400077cd196e37");
+  xhr.send();
+  console.log(xhr.responseText);
+  var body = JSON.parse(xhr.responseText).body;
+  xhr.open("GET", "https://api.uclassify.com/v1/uClassify/IAB Taxonomy/classify/?readKey=WdFduIw0qrTL&text=" + body, false);
+  xhr.send();
+  console.log(xhr.responseText);
+  var classification = JSON.parse(xhr.responseText);
+  var result = getMax(classification);
+  console.log("result:", result);
+  var punditListTopic = getPundits(result);
+  console.log(punditListTopic);
+  ReactDOM.render(React.createElement(ProfileList, { people: punditListTopic }), document.getElementById('people-panel'));
+});
+},{"es6-promise":2,"es6-promisify":3,"isomorphic-fetch":4,"react":13,"react-dom":10}],2:[function(require,module,exports){
 (function (process,global){
 /*!
  * @overview es6-promise - a tiny implementation of Promises/A+.
@@ -1592,7 +1598,7 @@ return Promise$1;
 
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":22}],3:[function(require,module,exports){
+},{"_process":21}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1872,7 +1878,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 module.exports = checkPropTypes;
 
 }).call(this,require('_process'))
-},{"./lib/ReactPropTypesSecret":7,"_process":22}],7:[function(require,module,exports){
+},{"./lib/ReactPropTypesSecret":7,"_process":21}],7:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -20780,7 +20786,7 @@ module.exports = reactDom;
 }
 
 }).call(this,require('_process'))
-},{"_process":22,"object-assign":5,"prop-types/checkPropTypes":6,"react":13,"scheduler":18,"scheduler/tracing":19}],9:[function(require,module,exports){
+},{"_process":21,"object-assign":5,"prop-types/checkPropTypes":6,"react":13,"scheduler":18,"scheduler/tracing":19}],9:[function(require,module,exports){
 /** @license React v16.6.0
  * react-dom.production.min.js
  *
@@ -21074,7 +21080,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/react-dom.development.js":8,"./cjs/react-dom.production.min.js":9,"_process":22}],11:[function(require,module,exports){
+},{"./cjs/react-dom.development.js":8,"./cjs/react-dom.production.min.js":9,"_process":21}],11:[function(require,module,exports){
 (function (process){
 /** @license React v16.6.0
  * react.development.js
@@ -22818,7 +22824,7 @@ module.exports = react;
 }
 
 }).call(this,require('_process'))
-},{"_process":22,"object-assign":5,"prop-types/checkPropTypes":6}],12:[function(require,module,exports){
+},{"_process":21,"object-assign":5,"prop-types/checkPropTypes":6}],12:[function(require,module,exports){
 /** @license React v16.6.0
  * react.production.min.js
  *
@@ -22855,7 +22861,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/react.development.js":11,"./cjs/react.production.min.js":12,"_process":22}],14:[function(require,module,exports){
+},{"./cjs/react.development.js":11,"./cjs/react.production.min.js":12,"_process":21}],14:[function(require,module,exports){
 (function (process){
 /** @license React v16.6.0
  * scheduler-tracing.development.js
@@ -23275,7 +23281,7 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
 }
 
 }).call(this,require('_process'))
-},{"_process":22}],15:[function(require,module,exports){
+},{"_process":21}],15:[function(require,module,exports){
 /** @license React v16.6.0
  * scheduler-tracing.production.min.js
  *
@@ -23945,7 +23951,7 @@ exports.unstable_getCurrentPriorityLevel = unstable_getCurrentPriorityLevel;
 }
 
 }).call(this,require('_process'))
-},{"_process":22}],17:[function(require,module,exports){
+},{"_process":21}],17:[function(require,module,exports){
 /** @license React v16.6.0
  * scheduler.production.min.js
  *
@@ -23977,7 +23983,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/scheduler.development.js":16,"./cjs/scheduler.production.min.js":17,"_process":22}],19:[function(require,module,exports){
+},{"./cjs/scheduler.development.js":16,"./cjs/scheduler.production.min.js":17,"_process":21}],19:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -23988,7 +23994,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/scheduler-tracing.development.js":14,"./cjs/scheduler-tracing.production.min.js":15,"_process":22}],20:[function(require,module,exports){
+},{"./cjs/scheduler-tracing.development.js":14,"./cjs/scheduler-tracing.production.min.js":15,"_process":21}],20:[function(require,module,exports){
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -24522,18 +24528,6 @@ if (process.env.NODE_ENV === 'production') {
 })));
 
 },{}],21:[function(require,module,exports){
-module.exports = {
-     getUrl: function() {
-    chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
-   function(tabs){
-        var cururl=tabs[0].url;
-   }
-
-);
-}
-}
-
-},{}],22:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 

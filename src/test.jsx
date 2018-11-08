@@ -1,6 +1,5 @@
 var ReactDOM = require('react-dom');
 var React = require('react');
-const {getUrl} = require('../url.js');
 const {promisify} = require("es6-promisify");
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
@@ -25,6 +24,7 @@ class Profile extends React.Component {
   
   class ProfileList extends React.Component {
     render() { 
+      if (this.props.people.length > 0) {
       return (
       <div className="people">
              <h2>Our Pundits:</h2> 
@@ -34,7 +34,11 @@ class Profile extends React.Component {
             }
             </div>
        </div>)
+      }else {
+        return <h1> NO PUNDITS </h1>
+      }
     }
+
   }
   
   /*
@@ -58,16 +62,6 @@ class Profile extends React.Component {
         "mode": 'no-cors'
 }
 
-/*
-async function test() {
-await fetch(url, header)
-  .then(function(response) {
-      console.log(response);
-  })
-}
-test();
-*/
-
 function getMax(classify) {
   var max=0;
   var maxgroup;
@@ -80,22 +74,6 @@ function getMax(classify) {
   }
   return maxgroup;
 }
-
-
-var xhr = new XMLHttpRequest();
-
-xhr.open("GET", "https://document-parser-api.lateral.io/?url=https://bleacherreport.com/articles/2790143-hue-jackson-reportedly-fired-by-browns-after-2-plus-seasons?utm_source=cnn.com&utm_medium=referral&utm_campaign=editorial", false);
-xhr.setRequestHeader("Access-Control-Request-Headers", "*");
-xhr.setRequestHeader("subscription-key", "02902c337eb01f2989400077cd196e37");
-xhr.send();
-var body = JSON.parse(xhr.responseText).body;
-xhr.open("GET", "https://api.uclassify.com/v1/uClassify/IAB Taxonomy/classify/?readKey=WdFduIw0qrTL&text=" + body, false);
-xhr.setRequestHeader("Access-Control-Request-Headers", "*");
-xhr.send();
-
-
-var classification = JSON.parse(xhr.responseText)
-
 
 var pundits = {
   "travel":[
@@ -399,19 +377,40 @@ function getMax(classify) { // classify == the classification output from uClass
 	return maxgroup;
 }
 
-var result=getMax(classification);
-
+const getUrl = () => new Promise((resolve, reject) => {
+    chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
+    function(tabs){
+        var cururl=tabs[0].url;
+        resolve(cururl);
+})
+});
 
 function getPundits(classification){ // classification == the output for getMax
 
 	var base_topic = classification.split("_")[0];
-	console.log(JSON.stringify(pundits));
-	console.log(pundits["automotive"]);
+	//console.log(JSON.stringify(pundits));
+	//console.log(pundits["automotive"]);
 	return pundits[base_topic];
 }
 
-var punditListTopic=getPundits(result);
-console.log(punditListTopic);
-
-
-ReactDOM.render(<ProfileList people={punditListTopic} /> , document.getElementById('people-panel'));
+getUrl().
+  then((x) => {
+    console.log(x);
+    console.log("https://document-parser-api.lateral.io/?url=" + x);
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://document-parser-api.lateral.io/?url=" + x, false);
+    //xhr.setRequestHeader("Access-Control-Request-Headers", "*");
+    xhr.setRequestHeader("subscription-key", "02902c337eb01f2989400077cd196e37");
+    xhr.send()
+    console.log(xhr.responseText);
+    var body = JSON.parse(xhr.responseText).body;
+    xhr.open("GET", "https://api.uclassify.com/v1/uClassify/IAB Taxonomy/classify/?readKey=WdFduIw0qrTL&text=" + body, false);
+    xhr.send();
+    console.log(xhr.responseText);
+    var classification = JSON.parse(xhr.responseText);
+    var result=getMax(classification);
+    console.log("result:", result);
+    var punditListTopic= getPundits(result);
+    console.log(punditListTopic);
+    ReactDOM.render(<ProfileList people={punditListTopic} /> , document.getElementById('people-panel'));
+})
