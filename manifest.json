@@ -4,7 +4,7 @@
   "name": "Pundit Panel Plugin",
   "description": "This extension will show tweets from pundits in the area of expertise of news articles",
   "version": "1.0",
-  "content_security_policy": "script-src 'self' https://document-parser-api.lateral.io https://platform.twitter.com https://cdn.syndication.twimg.com; object-src 'self'", 
+  "content_security_policy": "script-src 'self' https://document-parser-api.lateral.io https://platform.twitter.com https://cdn.syndication.twimg.com https://api.twitter.com/1.1/search/tweets.json; object-src 'self'", 
   "content_scripts" : [
     {
       "matches": ["https://platform.twitter.com/widgets.js"],
@@ -19,6 +19,7 @@
   "permissions": [
    "activeTab",
    "https://document-parser-api.lateral.io/*",
-   "https://api.uclassify.com/*"
+   "https://api.uclassify.com/*",
+   "https://api.twitter.com/1.1/search/*"
    ]
 }

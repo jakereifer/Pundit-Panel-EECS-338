@@ -3,6 +3,16 @@ var React = require('react');
 const {promisify} = require("es6-promisify");
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
+var Tw = require('react-twitter-embed');
+var Twitter = require('@frizz925/twitter');
+var Twit = require('twit');
+
+var T = new Twit({
+  consumer_key: 'TEEtF0XAUzSruWglwxFTsKXsc',
+  consumer_secret: 'ZmBLEn47ps2wzOfxuOPhLdi2ZuoIkcwCQejpQZABEqqsLDDCMa',
+  access_token: '1054523630657458178-gcNM8MiQJuoWmViEMhiBUKD8qzMN7r',
+  access_token_secret: 'XAXNtQHXLbpblvAVTRyU0LngDFXJv7LQkfO4JMRUHH9O5'
+});
 
 /*
  * A simple React component
@@ -41,6 +51,23 @@ class Profile extends React.Component {
 
   }
   
+  class MyTweets extends React.Component {
+    render() { 
+        if (this.props.ids.length > 0) {
+          return (
+            <div>
+              {this.props.ids.map((id,j) => 
+              <Tw.TwitterTweetEmbed tweetId={id} key={j}/>)}
+            </div>
+          )
+        }
+        else {
+          return <h1> There are no tweets by our pundits! </h1>;
+        }
+
+    }
+  }
+
   /*
    * Render the above component into the div#app
    */
@@ -385,12 +412,72 @@ const getUrl = () => new Promise((resolve, reject) => {
 })
 });
 
+const searchTwitter = (query) => new Promise((resolve,reject) => {
+    T.get('search/tweets', { q: query, count: 10 }, function(err, data, response) {
+      resolve(data);
+    })
+})
+
+const searchTwitterUsers = (query, users) => new Promise((resolve,reject) => {
+    for (var i = 0; i < pundits.length; i++) {
+    //query keywords from handles
+    
+    
+    tweetIds.concat(extract_ids(response));
+ }
+    searchTwitter()
+})
+
 function getPundits(classification){ // classification == the output for getMax
 
 	var base_topic = classification.split("_")[0];
 	//console.log(JSON.stringify(pundits));
 	//console.log(pundits["automotive"]);
 	return pundits[base_topic];
+}
+function queryBuilder(array) {
+  var string = "";
+  if (array.length == 1) {
+    return array[0];
+  }
+  for(var i = 0; i < array.length; i++){
+    if(i < array.length-1){
+      string = string.concat(array[i], " OR ");
+    } else{
+      string = string.concat(array[i]);
+    }
+  }
+  return string;
+}
+function extract_ids(array){
+  var back_array = [];
+  for(var i = 0; i < array.statuses.length; i++){
+  back_array.push(array.statuses[i].id_str);
+  }
+  return back_array;
+  }
+
+  function getHandles(punditListTopic){
+      var handles=[];
+      for (var a=0; a<punditListTopic.length; a++) {
+    handles.push(punditListTopic[a].handle);
+    }
+    return handles;
+    }
+
+function addPunditQuery(queryString, pundits) {
+  if (pundits.length == 1) {
+    return queryString.concat(" from:", pundit[0]);
+  }
+  for(var i = 0; i < pundits.length; i++){
+    if(i < pundits.length-1){
+      queryString = queryString.concat(" from:", pundits[i], " OR ");
+    } else{
+      queryString = queryString.concat(" from:", pundits[i]);
+    }
+  }
+  return queryString;
+
 }
 
 getUrl().
@@ -399,18 +486,37 @@ getUrl().
     console.log("https://document-parser-api.lateral.io/?url=" + x);
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://document-parser-api.lateral.io/?url=" + x, false);
-    //xhr.setRequestHeader("Access-Control-Request-Headers", "*");
     xhr.setRequestHeader("subscription-key", "02902c337eb01f2989400077cd196e37");
     xhr.send()
     console.log(xhr.responseText);
     var body = JSON.parse(xhr.responseText).body;
-    xhr.open("GET", "https://api.uclassify.com/v1/uClassify/IAB Taxonomy/classify/?readKey=WdFduIw0qrTL&text=" + body, false);
-    xhr.send();
-    console.log(xhr.responseText);
-    var classification = JSON.parse(xhr.responseText);
-    var result=getMax(classification);
-    console.log("result:", result);
-    var punditListTopic= getPundits(result);
-    console.log(punditListTopic);
-    ReactDOM.render(<ProfileList people={punditListTopic} /> , document.getElementById('people-panel'));
-})
+    var keywords = JSON.parse(xhr.responseText).keywords;
+    var queryString = queryBuilder(keywords);
+    console.log(queryString);
+
+    if (body) {
+        xhr.open("GET", "https://api.uclassify.com/v1/uClassify/IAB Taxonomy/classify/?readKey=WdFduIw0qrTL&text=" + body, false);
+        xhr.send();
+        console.log(xhr.responseText);
+        var classification = JSON.parse(xhr.responseText);
+        var result=getMax(classification);
+        console.log("result:", result);
+        var punditListTopic= getPundits(result);
+        console.log(punditListTopic);
+        ReactDOM.render(<ProfileList people={punditListTopic} /> , document.getElementById('people-panel'));
+    }
+
+    //var pundits = getHandles(punditListTopic);
+    queryString = addPunditQuery(queryString, getHandles(punditListTopic));
+    console.log("new query string:");
+    console.log(queryString);
+    return searchTwitter(queryString);
+  })
+  .then((x) => {
+    console.log(x);
+    var tweetIds = extract_ids(x);
+    console.log(tweetIds);
+    ReactDOM.render(<MyTweets ids={tweetIds}/> , document.getElementById("tweet-feed"));
+         
+    }
+)

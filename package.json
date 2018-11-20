@@ -17,12 +17,16 @@
   },
   "homepage": "https://github.com/jakereifer/Pundit-Panel-EECS-338#readme",
   "dependencies": {
+    "@frizz925/twitter": "^1.7.3",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.7.0",
     "es6-promise": "^4.2.5",
     "es6-promisify": "^6.0.1",
     "isomorphic-fetch": "^2.2.1",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0"
+    "react": "^16.6.3",
+    "react-dom": "^16.6.0",
+    "react-twitter-embed": "^2.0.4",
+    "twit": "^2.2.11"
   }
 }
