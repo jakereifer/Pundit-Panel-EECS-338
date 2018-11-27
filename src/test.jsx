@@ -115,6 +115,33 @@ var pundits = {
       handle: "TravelLeisure"
     },
   ],
+  "technology and computing":[
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/972170159614906369/0o9cdCOp_400x400.jpg",
+      friendlyName: "Elon Musk",
+      handle: "elonmusk"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/969240943671955456/mGuud28F_400x400.jpg",
+      friendlyName: "TechCrunch",
+      handle: "TechCrunch"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/888061792630517761/OzaUjTz5_400x400.jpg",
+      friendlyName: "Tech Insider",
+      handle: "techinsider"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/1035649273721847809/B0f8n_oe_400x400.jpg",
+      friendlyName: "Tim Cook",
+      handle: "tim_cook"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/988775660163252226/XpgonN0X_400x400.jpg",
+      friendlyName: "Bill Gates",
+      handle: "BillGates"
+    },
+  ],
   "technology":[
     {
       imgSource: "https://pbs.twimg.com/profile_images/972170159614906369/0o9cdCOp_400x400.jpg",
@@ -312,12 +339,59 @@ var pundits = {
       handle: "FitnessMagazine"
     },
   ],
-  "home and garden":[],
+  "home and garden":[
+     {
+      imgSource: "https://pbs.twimg.com/profile_images/961608661494849536/zgTbBabS_400x400.jpg",
+      friendlyName: "Sabrina Soto",
+      handle: "sabrinasoto"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/591235840652619776/7Y6spghi_400x400.jpg",
+      friendlyName: "FITNESS Magazine",
+      handle: "FitnessMagazine"
+    },],
   "hobbies and interests":[],
   "food and drink":[],
   "family and parenting":[],
-  "education":[],
-  "careers":[],
+  "education":[
+  {
+      imgSource: "https://pbs.twimg.com/profile_images/975787318954119168/Li0U1tnr_400x400.jpg",
+      friendlyName: "Betsy Devos",
+      handle: "betsydevosed"
+    },
+      {
+      imgSource: "https://pbs.twimg.com/profile_images/682923684063870977/Cnr0_5cg_400x400.jpg",
+      friendlyName: "Arne Duncan",
+      handle: "arneduncan"
+    },
+     {
+      imgSource: "https://pbs.twimg.com/profile_images/966837278617239552/XvOV8to6_400x400.jpg",
+      friendlyName: "Randi Weingarten",
+      handle: "rweingarten"
+    },
+    ],
+  "careers":[
+
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/2044852218/NYT_Twitter_Krugman_400x400.png",
+      friendlyName: "Paul Krugman",
+      handle: "paulkrugman"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/465901126684913664/sTJZxF5G_400x400.jpeg",
+      friendlyName: "Indeed.com",
+      handle: "Indeed"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/991818020233404416/alrBF_dr_400x400.jpg",
+      friendlyName: "Bloomberg",
+      handle: "business"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/1231909459/C-thumbnail-copy_400x400.jpg",
+      friendlyName: "Crain's Chicago",
+      handle: "CrainsChicago"
+    },],
   "business":[
     {
       imgSource: "https://pbs.twimg.com/profile_images/972170159614906369/0o9cdCOp_400x400.jpg",
@@ -347,24 +421,25 @@ var pundits = {
   ],
   "automotive":[
     {
-      imgSource: "https://pbs.twimg.com/profile_images/668939771914223616/EYUGQdtq_400x400.jpg",
-      friendlyName: "Perez Hilton",
-      handle: "PerezHilton"
+      imgSource: "https://pbs.twimg.com/profile_images/463796487604805632/lj-6WNq0_400x400.png",
+      friendlyName: "Cars.com",
+      handle: "carsdotcom"
     },
-    {
-      imgSource: "https://pbs.twimg.com/profile_images/668939771914223616/EYUGQdtq_400x400.jpg",
-      friendlyName: "Perez Hilton",
-      handle: "PerezHilton"
+   {
+      imgSource: "https://pbs.twimg.com/profile_images/972170159614906369/0o9cdCOp_400x400.jpg",
+      friendlyName: "Elon Musk",
+      handle: "elonmusk"
     },
+
     {
       imgSource: "https://pbs.twimg.com/profile_images/900399601282424832/sNDnYYZe_400x400.jpg",
-      friendlyName: "Taylor Swift",
-      handle: "taylorswift13"
+      friendlyName: "Tesla Motors",
+      handle: "Tesla"
     },
     {
-      imgSource: "https://pbs.twimg.com/profile_images/948698715220410368/EkNILtvi_400x400.jpg",
-      friendlyName: "TMZ",
-      handle: "TMZ"
+      imgSource: "https://pbs.twimg.com/profile_images/202644841/n650203102_2079561_8492-1_400x400.jpg",
+      friendlyName: "David Shepardson",
+      handle: "davidshepardson"
     },
   ],
   "arts and entertainment":[
@@ -373,11 +448,7 @@ var pundits = {
       friendlyName: "Perez Hilton",
       handle: "PerezHilton"
     },
-    {
-      imgSource: "https://pbs.twimg.com/profile_images/668939771914223616/EYUGQdtq_400x400.jpg",
-      friendlyName: "Perez Hilton",
-      handle: "PerezHilton"
-    },
+    
     {
       imgSource: "https://pbs.twimg.com/profile_images/900399601282424832/sNDnYYZe_400x400.jpg",
       friendlyName: "Taylor Swift",
