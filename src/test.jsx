@@ -109,10 +109,20 @@ var pundits = {
       friendlyName: "Nat Geo Travel",
       handle: "NatGeoTravel"
     },
+     {
+      imgSource: "https://pbs.twimg.com/profile_images/1019589513906196480/OH_NBsft_400x400.jpg",
+      friendlyName: "ThePointsGuy",
+      handle: "thepointsguy"
+    },
     {
       imgSource: "https://pbs.twimg.com/profile_images/3704055283/7830ca91dc1c7e34a27100568e628a93_400x400.png",
       friendlyName: "Travel + Leisure",
       handle: "TravelLeisure"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/712703916358537217/mcOketun_400x400.jpg",
+      friendlyName: "Earth Pics",
+      handle: "EarthPix"
     },
   ],
   "technology and computing":[
@@ -172,6 +182,11 @@ var pundits = {
   "style":[
     {
       imgSource: "https://pbs.twimg.com/profile_images/1038027161653927936/3SOWBypG_400x400.jpg",
+      friendlyName: "Giuliana Rancic",
+      handle: "GiulianaRancic"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/1038027161653927936/3SOWBypG_400x400.jpg",
       friendlyName: "NYFW",
       handle: "nyfw"
     },
@@ -183,14 +198,39 @@ var pundits = {
   ],
   "sports":[
     {
-      imgSource: "https://pbs.twimg.com/profile_images/1027403255607746560/dIyhrGOz_400x400.jpg",
-      friendlyName: "ESPN",
-      handle: "espn"
+      imgSource: "https://pbs.twimg.com/profile_images/1001458947386171392/hT0wI2fs_400x400.jpg",
+      friendlyName: "WOJ",
+      handle: "wojespn"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/1050727667576827905/sDx37qVs_400x400.jpg",
+      friendlyName: "Darren Rovell",
+      handle: "DarrenRovell"
+    },
+{
+      imgSource: "https://pbs.twimg.com/profile_images/1001539429628964864/3HBScTqM_400x400.jpg",
+      friendlyName: "Shams Charania",
+      handle: "ShamsCharania"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/955618755098312704/-ZkpUhOT_400x400.jpg",
+      friendlyName: "Tim Kurkjian",
+      handle: "Kurkjian_ESPN"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/715216118101712897/ZHYGUEMn_400x400.jpg",
+      friendlyName: "Kirk  Herbstreit",
+      handle: "KirkHerbstreit"
     },
     {
       imgSource: "https://pbs.twimg.com/profile_images/824007776489738241/pFk_8LLO_400x400.jpg",
       friendlyName: "FOX Sports",
       handle: "FOXSports"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/1027403255607746560/dIyhrGOz_400x400.jpg",
+      friendlyName: "ESPN",
+      handle: "espn"
     },
   ],
   "society":[
@@ -216,26 +256,48 @@ var pundits = {
       friendlyName: "Amazon.com",
       handle: "amazon"
     },
+        {
+      imgSource: "https://pbs.twimg.com/profile_images/994249554525499392/-FXXe19c_400x400.jpg",
+      friendlyName: "Best Buy",
+      handle: "BestBuy"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/913775734065324033/62niNMkQ_400x400.jpg",
+      friendlyName: "Slick Deals",
+      handle: "SlickDeals"
+    },
+    
   ],
   "science":[
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/606232291438829568/8liw3txV_400x400.jpg",
+      friendlyName: "Bill Nye",
+      handle: "BillNye"
+    },
     {
       imgSource: "https://pbs.twimg.com/profile_images/378800000564879746/1b6204ccf804be6a180408c8f76ab923_400x400.png",
       friendlyName: "Science News",
       handle: "ScienceNews"
     },
+
   ],
   "religion":[
     {
-      imgSource: "https://pbs.twimg.com/profile_images/378800000564879746/1b6204ccf804be6a180408c8f76ab923_400x400.png",
-      friendlyName: "Science News",
-      handle: "ScienceNews"
+      imgSource: "https://pbs.twimg.com/profile_images/507818066814590976/KNG-IkT9_400x400.jpeg",
+      friendlyName: "Pope Francis",
+      handle: "Pontifex"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/1039549708258172930/6jRvvzk0_400x400.jpg",
+      friendlyName: "Joyce Meyer",
+      handle: "Joyce Meyer"
     },
   ],
   "real estate":[
     {
-      imgSource: "https://pbs.twimg.com/profile_images/972170159614906369/0o9cdCOp_400x400.jpg",
-      friendlyName: "Elon Musk",
-      handle: "elonmusk"
+      imgSource: "https://pbs.twimg.com/profile_images/732338824936751104/vJX0_tQy_400x400.jpg",
+      friendlyName: "Zillow ",
+      handle: "zillow"
     },
     {
       imgSource: "https://pbs.twimg.com/profile_images/2044852218/NYT_Twitter_Krugman_400x400.png",
@@ -263,6 +325,11 @@ var pundits = {
       imgSource: "https://pbs.twimg.com/profile_images/840598231969079298/lY1uAFvx_400x400.jpg",
       friendlyName: "Pet Goals",
       handle: "PetGoals"
+    },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/1027707228994719745/WV8wlzz2_400x400.jpg",
+      friendlyName: "the AIR BUD",
+      handle: "AIRBUD"
     },
   ],
   "personal finance":[
@@ -338,6 +405,11 @@ var pundits = {
       friendlyName: "FITNESS Magazine",
       handle: "FitnessMagazine"
     },
+    {
+      imgSource: "https://pbs.twimg.com/profile_images/811559944487047169/VOXFEyVB_400x400.jpg",
+      friendlyName: "Kelly Steele Magazine",
+      handle: "winstarkelly"
+    },
   ],
   "home and garden":[
      {
@@ -350,9 +422,35 @@ var pundits = {
       friendlyName: "FITNESS Magazine",
       handle: "FitnessMagazine"
     },],
-  "hobbies and interests":[],
-  "food and drink":[],
-  "family and parenting":[],
+  "hobbies and interests":[{
+      imgSource: "https://pbs.twimg.com/profile_images/975787318954119168/Li0U1tnr_400x400.jpg",
+      friendlyName: "Betsy Devos",
+      handle: "betsydevosed"
+    },],
+  "food and drink":[
+  {
+      imgSource: "https://pbs.twimg.com/profile_images/738810295301246977/sJKDqlWh_400x400.jpg",
+      friendlyName: "Food and Wine",
+      handle: "FoodAndWine"
+    },
+{
+      imgSource: "https://pbs.twimg.com/profile_images/442966957214932992/UqbHZE72_400x400.jpeg",
+      friendlyName: "Bobby Flay",
+      handle: "bflay"
+    },
+    ],
+  "family and parenting":[
+  {
+      imgSource: "https://pbs.twimg.com/profile_images/1025359589494140928/iR7CN2ix_400x400.jpg",
+      friendlyName: "Nick David",
+      handle: "ndavid126"
+    },
+{
+      imgSource: "https://pbs.twimg.com/profile_images/1031996550556184578/Iqyxj6IZ_400x400.jpg",
+      friendlyName: "Jake Reifer",
+      handle: "j_reif97"
+    },
+    ],
   "education":[
   {
       imgSource: "https://pbs.twimg.com/profile_images/975787318954119168/Li0U1tnr_400x400.jpg",
@@ -461,6 +559,7 @@ var pundits = {
     },
   ]
 };
+
 
 function getMax(classify) { // classify == the classification output from uClassify
 	var max=0;
