@@ -530,7 +530,7 @@ var pundits = {
     },
 
     {
-      imgSource: "https://pbs.twimg.com/profile_images/900399601282424832/sNDnYYZe_400x400.jpg",
+      imgSource: "https://pbs.twimg.com/profile_images/489192650474414080/4RxZxsud_400x400.png",
       friendlyName: "Tesla Motors",
       handle: "Tesla"
     },
